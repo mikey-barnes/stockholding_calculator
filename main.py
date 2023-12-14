@@ -1,4 +1,5 @@
 import stockholding_calculator
+import sys
 def main():
     print(
         r"""
@@ -27,7 +28,7 @@ def main():
             print("Please only input numbers listed.\n")
         else:
             if selection == 0:
-                break
+                sys.exit("Exiting")
             if selection == 3:
                 stockholding_calculator.main()
 

@@ -123,7 +123,7 @@ def main():
     # export df to csv
     overstock_df.to_csv("over_under.csv")
 
-    sys.exit("Program complete.\n\n")
+    print("Program complete; exiting to main menu\n\n")
 
 
 if __name__ == "__main__":
