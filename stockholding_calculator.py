@@ -11,7 +11,7 @@ def main():
 
 
 
-    print("Please wait; loading resources.\n")
+    print("\nPlease wait; loading resources.\n")
 
     # Import resources
     try:
