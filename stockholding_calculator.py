@@ -103,6 +103,7 @@ def main():
             "Supplier Code",
             "average_sales",
             "stdev_sales",
+            f"{period}_std_stock",
             "calculated_std_stock",
             "inventory_Potters_of_Hockley",
             "quantity_to_order",
