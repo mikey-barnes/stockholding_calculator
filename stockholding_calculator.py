@@ -62,24 +62,24 @@ def main():
 
     # create a new df of only the daily sales data; daily_sales_df to
     # call .mean on
-    daily_sales_df = sales_df[sales_data_column_names]
+    period_sales_df = sales_df[sales_data_column_names]
 
     # append the calculated mean value to original sales_df
-    sales_df["average_daily_sales"] = daily_sales_df.mean(axis=1)
+    sales_df["average_sales"] = period_sales_df.mean(axis=1)
 
     # append calculated standard deviation to original sales_df
-    sales_df["stdev_sales"] = daily_sales_df.std(axis=1)
+    sales_df["stdev_sales"] = period_sales_df.std(axis=1)
 
-    # calculate standard days sales by summing mean and std columns
-    sales_df["daily_std_stock"] = (
-        sales_df["average_daily_sales"] + sales_df["stdev_sales"]
+    # calculate standard period sales by summing mean and std columns
+    sales_df[f"{period}_std_stock"] = (
+        sales_df["average_sales"] + sales_df["stdev_sales"]
     )
 
-    # calculate weekly standard sales by multiplying daily by the prediction_period
-    sales_df["weekly_std_stock"] = sales_df["daily_std_stock"] * prediction_period
+    # calculate weekly standard sales by multiplying std_stock by the prediction_period
+    sales_df["calculated_std_stock"] = sales_df[f"{period}_std_stock"] * prediction_period
 
-    # round the weekly standard to a whole number
-    sales_df["weekly_std_stock"] = sales_df["weekly_std_stock"].apply(lambda x: ceil(x))
+    # round the callculated standard to a whole number
+    sales_df["calculated_std_stock"] = sales_df["calculated_std_stock"].apply(lambda x: round(x))
 
     sales_df.SKU = sales_df["SKU"].apply(lambda x: int(x))
     inventory_df[inventory_df["sku"].apply(lambda x: isinstance(x, int))]
@@ -92,7 +92,7 @@ def main():
 
     # add quantity_to_order column using difference between inventory and std_weekly_stock
     overstock_df["quantity_to_order"] = (
-        overstock_df["weekly_std_stock"] - overstock_df["inventory_Potters_of_Hockley"]
+        overstock_df["calculated_std_stock"] - overstock_df["inventory_Potters_of_Hockley"]
     )
 
     # strip out irrelevant columns from to_order_df
@@ -101,10 +101,9 @@ def main():
             "Product",
             "SKU",
             "Supplier Code",
-            "average_daily_sales",
+            "average_sales",
             "stdev_sales",
-            "daily_std_stock",
-            "weekly_std_stock",
+            "calculated_std_stock",
             "inventory_Potters_of_Hockley",
             "quantity_to_order",
             "supply_price",
