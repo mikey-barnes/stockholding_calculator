@@ -4,7 +4,7 @@ import os
 from math import ceil
 
 
-def main():
+def stockholding_calculator(sales_df,inventory_df):
     """Program should look at the last 'n' periods of sales data for each
     item, calculate the average period sales, standard deviation, and sum
     the two to reach a 'standard period sales' figure.

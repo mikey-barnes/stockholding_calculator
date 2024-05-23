@@ -1,4 +1,4 @@
-import stockholding_calculator
+from stockholding_calculator import stockholding_calculator
 import non_movers_report
 import sys
 import pandas as pd
@@ -49,10 +49,10 @@ def main():
         else:
             if selection == 0:
                 sys.exit("Exiting")
+            if selection == 3:
+                stockholding_calculator(sales_df,inventory_df)
             if selection == 4:
                 non_movers_report.main()
-            if selection == 3:
-                stockholding_calculator.main()
 
 
 if __name__ == "__main__":
