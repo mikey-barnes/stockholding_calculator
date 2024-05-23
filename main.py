@@ -1,5 +1,8 @@
 import stockholding_calculator
+import non_movers_report
 import sys
+
+
 def main():
     print(
         r"""
@@ -13,6 +16,21 @@ def main():
                                                                        |___/                       
 """
     )
+    print("\nPlease wait; loading resources.\n")
+
+    # Import resources
+    try:
+        sales_df = pd.read_csv("sales_data.csv")  # this is sales data for each item
+        inventory_df = pd.read_csv(
+            "product-export.csv"
+        )  # this is current inventory figures for each item
+    except FileNotFoundError:
+        print(
+            "One or more files missing. You will need to rectify this before progressing.\n"
+        )
+    else:
+        print("Resources loaded.\n")
+
     while True:
         try:
             selection = int(
@@ -20,7 +38,8 @@ def main():
                     """Please choose from the following:
     1. Update catalogue.
     2. List suppliers.
-    3. Suggest purchases. 
+    3. Suggest purchases.
+    4. Run non-movers report.
     0. Exit\n\n"""
                 )
             )
@@ -29,6 +48,8 @@ def main():
         else:
             if selection == 0:
                 sys.exit("Exiting")
+            if selection == 4:
+                non_movers_report.main()
             if selection == 3:
                 stockholding_calculator.main()
 
