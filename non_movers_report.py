@@ -1,7 +1,7 @@
 import csv
 
 
-def main():
+def non_movers_report():
     with open("sales_data.csv", errors="ignore", newline="") as sales_csv, open(
         "product-export.csv", errors="ignore", newline=""
     ) as products_csv:
