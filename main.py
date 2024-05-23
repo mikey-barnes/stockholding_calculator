@@ -1,6 +1,7 @@
 import stockholding_calculator
 import non_movers_report
 import sys
+import pandas as pd
 
 
 def main():
