@@ -36,7 +36,7 @@ def stockholding_calculator(sales_df,inventory_df):
             print("Please input a interger value.")
         else:
             break
-
+    pd.options.mode.copy_on_write = True
     sales_df = sales_df[:-6]  # strip unneeded trailing information
 
     # sales_df contains 'n' periods worth of sales data, each column of which
