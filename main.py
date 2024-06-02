@@ -35,15 +35,17 @@ def main():
                 )
             )
         except ValueError:
-            os.system('cls)')
+            os.system("cls")
+            print_logo()
             print("Please only input numbers listed.\n")
         else:
             if selection == 0:
                 sys.exit("Exiting")
             if selection == 3:
-                stockholding_calculator(sales_df,inventory_df)
+                stockholding_calculator(sales_df, inventory_df)
             if selection == 4:
                 non_movers_report()
+
 
 def print_logo():
     print(
@@ -59,6 +61,6 @@ def print_logo():
 """
     )
 
+
 if __name__ == "__main__":
     main()
-
