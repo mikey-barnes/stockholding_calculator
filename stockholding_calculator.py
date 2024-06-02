@@ -112,14 +112,19 @@ def stockholding_calculator(sales_df,inventory_df):
     # export df to csv
     overstock_df.to_csv("over_under.csv")
 
-    delete_files = input("Do you want to delete files? [Y/N]: ").lower()
+    while True:
+        delete_files = input("Do you want to delete files? [Y/N]: ").lower()
 
-    if delete_files == "y":
-        os.remove("sales_data.csv")
-        os.remove("product-export.csv")
+        if delete_files[0] == "y":
+            os.remove("sales_data.csv")
+            os.remove("product-export.csv")
+        elif delete_files[0] == "n":
+            break
+        else:
+            continue
 
     print("Program complete; exiting to main menu\n\n")
 
 
 if __name__ == "__main__":
-    main()
+    stockholding_calculator()
