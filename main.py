@@ -10,6 +10,7 @@ def main():
     print("\nPlease wait; loading resources.\n")
 
     # Import resources
+    resources_loaded=False
     try:
         sales_df = pd.read_csv("sales_data.csv")  # this is sales data for each item
         inventory_df = pd.read_csv(
@@ -20,9 +21,10 @@ def main():
             "One or more files missing. You will need to rectify this before progressing.\n"
         )
     else:
+        resources_loaded=True
         print("Resources loaded.\n")
 
-    while True:
+    while resources_loaded:
         try:
             selection = int(
                 input(
