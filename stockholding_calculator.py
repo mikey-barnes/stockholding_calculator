@@ -118,6 +118,7 @@ def stockholding_calculator(sales_df,inventory_df):
         if delete_files[0] == "y":
             os.remove("sales_data.csv")
             os.remove("product-export.csv")
+            break
         elif delete_files[0] == "n":
             break
         else:
